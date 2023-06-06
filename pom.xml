@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sevlow.rain</groupId>
+  <artifactId>rain</artifactId>
+  <packaging>pom</packaging>
+  <version>${revision}</version>
+  <description>rain project aim at make simple java component scanner without spring framework
+  </description>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>einsitang</name>
+      <id>einsitang</id>
+      <email>my-tangjianbin@163.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+
+  <modules>
+    <module>rain-core</module>
+    <module>rain-dependencies</module>
+  </modules>
+
+  <properties>
+    <maven.test.skip>true</maven.test.skip>
+    <revision>0.0.1-SNAPSHOT</revision>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jacoco.version>0.8.10</jacoco.version>
+    <org.projectlombok.version>1.18.26</org.projectlombok.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.sevlow.rain</groupId>
+        <artifactId>rain-dependencies</artifactId>
+        <version>${project.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <!-- 统一版本号管理 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.2.7</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>resolveCiFriendliesOnly</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${java.version}</source> <!-- depending on your project -->
+          <target>${java.version}</target> <!-- depending on your project -->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${org.projectlombok.version}</version>
+            </path>
+            <!-- other annotation processors -->
+          </annotationProcessorPaths>
+          <compilerArgs>--enable-preview</compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.11.0</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <configuration>
+              <excludes>src/main/resources</excludes>
+              <configLocation>style/checkstyle.xml</configLocation>
+              <suppressionsLocation>style/checkstyle-suppressions.xml</suppressionsLocation>
+              <encoding>UTF-8</encoding>
+              <consoleOutput>true</consoleOutput>
+              <failsOnError>true</failsOnError>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>6.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!--日期格式;默认值:dd.MM.yyyy '@' HH:mm:ss z;-->
+          <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+          <!--,构建过程中,是否打印详细信息;默认值:false;-->
+          <verbose>false</verbose>
+          <!-- ".git"文件路径;默认值:${project.basedir}/.git; -->
+          <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+          <!--若项目打包类型为pom,是否取消构建;默认值:true;-->
+          <skipPoms>false</skipPoms>
+          <!--是否生成"git.properties"文件;默认值:false;-->
+          <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <!--指定"git.properties"文件的存放路径(相对于${project.basedir}的一个路径);-->
+          <!--                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>-->
+          <!--".git"文件夹未找到时,构建是否失败;若设置true,则构建失败;若设置false,则跳过执行该目标;默认值:true;-->
+          <failOnNoGitDirectory>true</failOnNoGitDirectory>
+          <format>json</format>
+          <!--git描述配置,可选;由JGit提供实现;-->
+          <gitDescribe>
+            <!--是否生成描述属性-->
+            <skip>false</skip>
+            <!--提交操作未发现tag时,仅打印提交操作ID,-->
+            <always>false</always>
+            <!--提交操作ID显式字符长度,最大值为:40;默认值:7;
+                0代表特殊意义;后面有解释;
+            -->
+            <abbrev>7</abbrev>
+            <!--构建触发时,代码有修改时(即"dirty state"),添加指定后缀;默认值:"";-->
+            <dirty>-dirty</dirty>
+            <!--always print using the "tag-commits_from_tag-g_commit_id-maybe_dirty" format, even if "on" a tag.
+                The distance will always be 0 if you're "on" the tag.
+            -->
+            <forceLongFormat>false</forceLongFormat>
+          </gitDescribe>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <argLine>
+            -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.version}/org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${project.basedir}/target/coverage-reports/jacoco-unit.exec
+          </argLine>
+          <testFailureIgnore>true</testFailureIgnore>
+          <includes>
+            <include>**/*Tests.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <!--检查代码覆盖率的插件配置-->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <configuration>
+          <!--指定生成.exec文件的存放位置-->
+          <destFile>target/coverage-reports/jacoco-unit.exec</destFile>
+          <!--Jacoco是根据.exec文件生成最终的报告，所以需指定.exec的存放路径-->
+          <dataFile>target/coverage-reports/jacoco-unit.exec</dataFile>
+          <!--          <includes>-->
+          <!--            <include>**/test/**</include>-->
+          <!--          </includes>-->
+          <!-- rules里面指定覆盖规则 -->
+          <rules>
+            <rule implementation="org.jacoco.maven.RuleConfiguration">
+              <element>BUNDLE</element>
+              <limits>　　
+                <!-- 指定方法覆盖到50% -->
+                <limit implementation="org.jacoco.report.check.Limit">
+                  <counter>METHOD</counter>
+                  <value>COVEREDRATIO</value>
+                  <minimum>0.50</minimum>
+                </limit>
+                <!-- 指定分支覆盖到50% -->
+                <limit implementation="org.jacoco.report.check.Limit">
+                  <counter>BRANCH</counter>
+                  <value>COVEREDRATIO</value>
+                  <minimum>0.50</minimum>
+                </limit>
+                <!-- 指定类覆盖到100%，不能遗失任何类 -->
+                <limit implementation="org.jacoco.report.check.Limit">
+                  <counter>CLASS</counter>
+                  <value>MISSEDCOUNT</value>
+                  <maximum>0</maximum>
+                </limit>
+              </limits>
+            </rule>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>pre-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>post-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

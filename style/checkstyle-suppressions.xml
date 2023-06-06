@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+  "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+  "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+  <suppress files="[\\/]generated-sources[\\/]" checks="[a-zA-Z0-9]*"/>
+  <suppress files=".*Bootstrap.java$|.*Application.java$" checks="HideUtilityClassConstructor" />
+  <suppress files="com.chicv.mineral.starter.service.impl.SnowflakeServiceImpl" checks="[a-zA-Z0-9]*" />
+  <suppress files="com.chicv.mineral.starter.web.serializer.GsonRedisSerializer" checks="[a-zA-Z0-9]*" />
+  <suppress files="com.chicv.mineral.starter.cache.*" checks="[a-zA-Z0-9]*" />
+  <suppress files="com.chicv.mineral.starter.json.*" checks="[a-zA-Z0-9]*" />
+  <suppress files="com.chicv.mineral.codegenerator.*" checks="[a-zA-Z0-9]*" />
+  <suppress files="code-generator-output[\\/]" checks="[a-zA-Z0-9]*" />
+  <suppress files="mineral-code-generator[\\/]" checks="[a-zA-Z0-9]*" />
+</suppressions>
