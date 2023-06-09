@@ -35,5 +35,7 @@ build/
 ### VS Code ###
 .vscode/
 
+.flattened-pom.xml
+
 ### Mac OS ###
 .DS_Store

@@ -36,7 +36,7 @@
 
   <properties>
     <maven.test.skip>true</maven.test.skip>
-    <revision>0.0.1-SNAPSHOT</revision>
+    <revision>0.1.0-SNAPSHOT</revision>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
