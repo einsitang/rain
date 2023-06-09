@@ -12,10 +12,12 @@
 
 ## how-to-use
 
-### depend
+### environment
 - jdk `17` - code pass at jdk17
 
-**maven**
+### usage
+
+**add maven dependency**
 
 latest version : 0.1.5
 
@@ -26,8 +28,7 @@ latest version : 0.1.5
     <version>${rain-core.version}</version>
 </dependency>
 ```
-
-### usage
+**build RainComponentManager and lanuch**
 
 ```java
   // build RainComponentManager with builder  
