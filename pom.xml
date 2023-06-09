@@ -8,6 +8,7 @@
   <artifactId>rain</artifactId>
   <packaging>pom</packaging>
   <version>${revision}</version>
+  <name>rain</name>
   <description>Rain project is a simple customize Java component lib without spring context
   </description>
   <url>https://einsitang.github.io</url>
@@ -89,6 +90,22 @@
             <goals>
               <goal>clean</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <additionalparam>-Xdoclint:none</additionalparam>
+            </configuration>
           </execution>
         </executions>
       </plugin>

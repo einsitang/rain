@@ -11,12 +11,37 @@
 
   <name>rain-dependencies</name>
   <description>rain dependencies</description>
-
+  <url>https://einsitang.github.io</url>
   <properties>
     <revision>0.1.5</revision>
     <junit.version>5.9.1</junit.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
   </properties>
+
+  <developers>
+    <developer>
+      <name>einsitang</name>
+      <id>einsitang</id>
+      <email>my-tangjianbin@163.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/einsitang/rain</url>
+    <connection>git@github.com:einsitang/rain.git</connection>
+    <developerConnection>https://github.com/einsitang</developerConnection>
+  </scm>
 
   <dependencyManagement>
     <dependencies>
