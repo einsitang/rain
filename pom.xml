@@ -8,8 +8,9 @@
   <artifactId>rain</artifactId>
   <packaging>pom</packaging>
   <version>${revision}</version>
-  <description>rain project aim at make simple java component scanner without spring framework
+  <description>Rain project is a simple customize Java component lib without spring context
   </description>
+  <url>https://einsitang.github.io</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -36,7 +37,7 @@
 
   <properties>
     <maven.test.skip>true</maven.test.skip>
-    <revision>0.1.0-SNAPSHOT</revision>
+    <revision>0.1.4-SNAPSHOT</revision>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -63,7 +64,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
-        <version>1.2.7</version>
+        <version>1.5.0</version>
         <configuration>
           <updatePomFile>true</updatePomFile>
           <flattenMode>resolveCiFriendliesOnly</flattenMode>
@@ -85,6 +86,12 @@
           </execution>
         </executions>
       </plugin>
+      <!-- rdc need upgrade deploy plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.1</version>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -103,6 +110,24 @@
           <compilerArgs>--enable-preview</compilerArgs>
         </configuration>
       </plugin>
+      <!-- build with source -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- checkstyle -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>

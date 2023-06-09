@@ -13,8 +13,9 @@
   <description>rain dependencies</description>
 
   <properties>
-    <revision>0.1.0-SNAPSHOT</revision>
+    <revision>0.1.4-SNAPSHOT</revision>
     <junit.version>5.9.1</junit.version>
+    <commons-lang3.version>3.12.0</commons-lang3.version>
   </properties>
 
   <dependencyManagement>
@@ -23,7 +24,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.12.0</version>
+        <version>${commons-lang3.version}</version>
       </dependency>
 
       <!-- Junit tests -->
@@ -34,36 +35,15 @@
         <scope>test</scope>
       </dependency>
     </dependencies>
-
   </dependencyManagement>
 
   <build>
     <plugins>
-      <!-- 统一版本号管理 -->
+      <!-- rdc need upgrade deploy plugin -->
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>flatten-maven-plugin</artifactId>
-        <version>1.2.7</version>
-        <configuration>
-          <updatePomFile>true</updatePomFile>
-          <flattenMode>resolveCiFriendliesOnly</flattenMode>
-        </configuration>
-        <executions>
-          <execution>
-            <id>flatten</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>flatten</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>flatten.clean</id>
-            <phase>clean</phase>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.1</version>
       </plugin>
     </plugins>
   </build>

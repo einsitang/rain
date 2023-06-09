@@ -1,6 +1,8 @@
 # Rain
 
 ![GithubWorkflow](https://github.com/einsitang/rain/actions/workflows/maven.yml/badge.svg)
+[![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## about
 
@@ -51,6 +53,7 @@
             return RainResult.match(testBean, name);
         })
         .build();
+    rainComponentManager.lanuch();
 
     // get First
     TestBean tb1 = (TestBean)rainComponentManager.get(TestBean.class);
@@ -59,13 +62,13 @@
     TestBean tb3 = (TestBean)rainComponentManager.get(TestBean.class, "testBean1");
     TestBean tb4 = (TestBean)rainComponentManager.get(TestComponent.class, "testBean1");
     System.out.println(tb3 == tb4); // true
-    System.out.println(tb1 == tb3); // true , because just one TestBean type list
+    System.out.println(tb1 == tb3); // true , because just one TestBean instance on type list
     
     TestBean tb5 = (TestBean)rainComponentManager.get(TestBean.class,"notMatchName");
     System.out.println(tb5); // null , because "notMathName" with TestBean.class not found
     
     // list with class , if not found , will return empty list
-    ist<?> testBeanList = rainComponentManager.list(TestBean.class);
+    List<?> testBeanList = rainComponentManager.list(TestBean.class);
 
 ```
 
