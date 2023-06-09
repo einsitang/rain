@@ -253,4 +253,17 @@
     </plugins>
   </build>
 
+  <distributionManagement>
+    <repository>
+      <id>rdc</id>
+      <name>rdc-releases</name>
+      <url>https://packages.aliyun.com/maven/repository/2062492-release-jehpi8</url>
+    </repository>
+    <snapshotRepository>
+      <id>rdc</id>
+      <name>rdc-snapshots</name>
+      <url>https://packages.aliyun.com/maven/repository/2062492-snapshot-bmq75s</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>

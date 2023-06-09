@@ -1,5 +1,7 @@
 # Rain
 
+![GithubWorkflow](https://github.com/einsitang/rain/actions/workflows/maven.yml/badge.svg)
+
 ## about
 
 `Rain` is a simple customize Java component lib without spring context
