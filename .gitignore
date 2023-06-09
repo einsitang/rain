@@ -36,6 +36,7 @@ build/
 .vscode/
 
 .flattened-pom.xml
+pom.xml.versionsBackup
 
 ### Mac OS ###
 .DS_Store

@@ -6,7 +6,22 @@
 
 **simple , easy and tiny**
 
-## usage
+## how-to-use
+
+### depend
+- jdk `17` - code pass at jdk17
+
+**maven**
+```
+# this repository not deploy yet
+<dependency>
+    <groupId>com.sevlow.rain</groupId>
+    <artifactId>rain-core</artifactId>
+    <version>${rain-core.version}</version>
+</dependency>
+```
+
+### usage
 
 ```java
   // build RainComponentManager with builder  
