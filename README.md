@@ -16,8 +16,10 @@
 - jdk `17` - code pass at jdk17
 
 **maven**
+
+latest version : 0.1.5
+
 ```
-# this repository not deploy yet
 <dependency>
     <groupId>com.sevlow.rain</groupId>
     <artifactId>rain-core</artifactId>
