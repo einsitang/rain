@@ -13,7 +13,7 @@
   <description>rain dependencies</description>
 
   <properties>
-    <revision>0.1.4-SNAPSHOT</revision>
+    <revision>0.1.4</revision>
     <junit.version>5.9.1</junit.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
   </properties>
@@ -47,5 +47,37 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>rdc</id>
+      <distributionManagement>
+        <repository>
+          <id>rdc</id>
+          <name>rdc-releases</name>
+          <url>https://packages.aliyun.com/maven/repository/2062492-release-jehpi8</url>
+        </repository>
+        <snapshotRepository>
+          <id>rdc</id>
+          <name>rdc-snapshots</name>
+          <url>https://packages.aliyun.com/maven/repository/2062492-snapshot-bmq75s</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+    <profile>
+      <id>ossrh</id>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
 
 </project>

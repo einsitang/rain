@@ -30,6 +30,12 @@
     </developer>
   </developers>
 
+  <scm>
+    <url>https://github.com/einsitang/rain</url>
+    <connection>git@github.com:einsitang/rain.git</connection>
+    <developerConnection>https://github.com/einsitang</developerConnection>
+  </scm>
+
   <modules>
     <module>rain-core</module>
     <module>rain-dependencies</module>
@@ -37,7 +43,7 @@
 
   <properties>
     <maven.test.skip>true</maven.test.skip>
-    <revision>0.1.4-SNAPSHOT</revision>
+    <revision>0.1.4</revision>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -275,20 +281,54 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- gpg sign plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
-  <distributionManagement>
-    <repository>
+  <profiles>
+    <profile>
       <id>rdc</id>
-      <name>rdc-releases</name>
-      <url>https://packages.aliyun.com/maven/repository/2062492-release-jehpi8</url>
-    </repository>
-    <snapshotRepository>
-      <id>rdc</id>
-      <name>rdc-snapshots</name>
-      <url>https://packages.aliyun.com/maven/repository/2062492-snapshot-bmq75s</url>
-    </snapshotRepository>
-  </distributionManagement>
+      <distributionManagement>
+        <repository>
+          <id>rdc</id>
+          <name>rdc-releases</name>
+          <url>https://packages.aliyun.com/maven/repository/2062492-release-jehpi8</url>
+        </repository>
+        <snapshotRepository>
+          <id>rdc</id>
+          <name>rdc-snapshots</name>
+          <url>https://packages.aliyun.com/maven/repository/2062492-snapshot-bmq75s</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+    <profile>
+      <id>ossrh</id>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
 
 </project>

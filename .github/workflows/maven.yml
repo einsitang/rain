@@ -32,7 +32,7 @@ jobs:
         MAVEN_SETTINGS_PASSPHRASE: ${{ secrets.MAVEN_SETTINGS_PASSPHRASE }}
       run: gpg --quiet --batch --yes --decrypt --passphrase="$MAVEN_SETTINGS_PASSPHRASE" --output ./maven_settings.xml ./maven/settings.xml.gpg
     - name: Build & Deploy with RDC Maven
-      run: mvn -s maven_settings.xml -B deploy -U --file pom.xml
+      run: mvn -s maven_settings.xml -B deploy -U -P rdc --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # is look like not working for this project and I don't why... just disable it
