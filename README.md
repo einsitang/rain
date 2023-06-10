@@ -20,7 +20,7 @@
 
 **add maven dependency**
 
-latest version : 0.1.5
+latest version : 0.1.6
 
 ```
 <dependency>

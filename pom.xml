@@ -44,7 +44,7 @@
 
   <properties>
     <maven.test.skip>true</maven.test.skip>
-    <revision>0.1.6-SNAPSHOT</revision>
+    <revision>0.1.6</revision>
     <java.version>8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
