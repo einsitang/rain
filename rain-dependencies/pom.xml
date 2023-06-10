@@ -13,7 +13,7 @@
   <description>rain dependencies</description>
   <url>https://einsitang.github.io</url>
   <properties>
-    <revision>0.1.5</revision>
+    <revision>0.1.6-SNAPSHOT</revision>
     <junit.version>5.9.1</junit.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
   </properties>
