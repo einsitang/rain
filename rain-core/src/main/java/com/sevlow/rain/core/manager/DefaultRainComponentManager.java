@@ -89,6 +89,9 @@ public class DefaultRainComponentManager implements RainComponentManager {
       TypeWithHandler handler = annotationHandlerMap.get(annotation.annotationType());
       if (handler != null) {
         RainResult<?> rainResult = handler.handle(type);
+        if (!rainResult.isMatch()) {
+          return;
+        }
         Object obj = rainResult.getObj();
         if (!type.equals(obj.getClass())) {
           throw new RuntimeException(
