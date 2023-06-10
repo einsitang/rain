@@ -13,7 +13,8 @@
 ## how-to-use
 
 ### environment
-- jdk `17` - code pass at jdk17
+- ~~jdk `17` - code pass at jdk17~~
+- jdk `8` build target with jdk 8
 
 ### usage
 
